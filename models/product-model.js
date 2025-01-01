@@ -10,7 +10,9 @@ const productSchema = mongoose.Schema({
     },
     bgcolor: String,
     panelcolor: String,
-    textcolor: String
+    textcolor: String,
+    isAvailable: Boolean,
 });
+
 
 module.exports = mongoose.model("product", productSchema);

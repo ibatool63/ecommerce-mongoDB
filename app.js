@@ -9,7 +9,6 @@ const usersRouter = require("./routes/usersRouter");
 const indexRouter = require("./routes/index");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
-
 const db = require("./config/mongoose-connection");
 
 app.use(express.json());

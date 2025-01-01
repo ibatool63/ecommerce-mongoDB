@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const upload = require("../config/multer-config");
-const productModdel = require("../models/product-model");
 const productModel = require('../models/product-model');
+const productController = require('../controllers/productController');
 
 router.post("/create", upload.single("image"), async function(req, res){
     try { 
@@ -24,5 +24,10 @@ router.post("/create", upload.single("image"), async function(req, res){
     }
 });
 
+// Define route for aggregated discounted products
+router.get('/aggregated-discounted', productController.getAggregatedDiscountedBags);
+
+// Define any other routes for discounted products if necessary
+router.get('/discounted', productController.getDiscountedProducts);
 
 module.exports = router;

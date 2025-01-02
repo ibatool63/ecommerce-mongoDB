@@ -24,10 +24,8 @@ router.post("/create", upload.single("image"), async function(req, res){
     }
 });
 
-// Define route for aggregated discounted products
 router.get('/aggregated-discounted', productController.getAggregatedDiscountedBags);
 
-// Define any other routes for discounted products if necessary
 router.get('/discounted', productController.getDiscountedProducts);
 
 module.exports = router;

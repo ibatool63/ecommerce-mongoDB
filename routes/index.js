@@ -6,12 +6,12 @@ const userModel = require("../models/user-model");
 
 router.get("/", function (req, res) {
     let error = req.flash("error");
-    res.render("index", { error, isLoggedIn: false }); // Fallback to null if error is undefined or empty
+    res.render("index", { error, isLoggedIn: false }); 
 });
 
 router.get('/shop', isLoggedIn, async (req, res) => {
     try {
-        const product = await productModel.find(); // Replace ProductModel with your actual model
+        const product = await productModel.find(); 
         let success = req.flash("success");
         res.render("shop", { products: product, success });
     } catch (error) {

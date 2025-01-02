@@ -3,7 +3,7 @@ const Product = require('../models/product-model.js');
 // Get all discounted products with sorting based on price or discountPrice
 const getDiscountedProducts = async (req, res) => {
   try {
-    const { sortBy = 'price', sortOrder = 'asc' } = req.query; // Get sort criteria from query parameters
+    const { sortBy = 'price', sortOrder = 'asc' } = req.query; 
 
     const discountedProducts = await Product.findDiscountedProducts(sortBy, sortOrder);
     res.json(discountedProducts); 
@@ -26,13 +26,12 @@ const getAggregatedDiscountedBags = async (req, res) => {
       // Match only discounted products (where discountPrice exists and is lower than price)
       { $match: { price: { $gt: price } } },
 
-      // Project the necessary fields and calculate the discount amount
       {
         $project: {
           name: 1,
           originalPrice: "$price",
           discountPrice: 1,
-          discountAmount: { $subtract: ["$price", "$discountPrice"] }, // Calculate discount amount
+          discountAmount: { $subtract: ["$price", "$discountPrice"] }, 
         },
       },
 
@@ -45,7 +44,6 @@ const getAggregatedDiscountedBags = async (req, res) => {
         },
       },
 
-      // Optionally, sort by total discount value (descending)
       { $sort: { totalDiscountValue: -1 } },
     ]);
 
@@ -55,8 +53,7 @@ const getAggregatedDiscountedBags = async (req, res) => {
   }
 };
 
-// Export both functions
 module.exports = {
   getDiscountedProducts,
-  getAggregatedDiscountedBags, // Ensure this is properly exported
+  getAggregatedDiscountedBags, 
 };

@@ -31,7 +31,7 @@ module.exports.registerUser = async function (req, res) {
 
         
     } catch (err) {
-        res.status(500).send(err.message); // Always return a proper status code
+        res.status(500).send(err.message); 
     }
 };
 
